@@ -43,13 +43,13 @@ function update_transaction_status($conn, $status, $procid, $txnid, $refno) {
     return $result;
 }
 
-// Capture and sanitize POST parameters
-$txnid = isset($_POST['txn_id']) ? sanitize_input($_POST['txn_id']) : null;
-$refno = isset($_POST['ref_no']) ? sanitize_input($_POST['ref_no']) : null;
-$status = isset($_POST['status']) ? sanitize_input($_POST['status']) : null;
-$amount = isset($_POST['amount']) ? sanitize_input($_POST['amount']) : null;
-$ccy = isset($_POST['ccy']) ? sanitize_input($_POST['ccy']) : null;
-$procid = isset($_POST['procid']) ? sanitize_input($_POST['procid']) : null;
+// Capture and sanitize GET or POST parameters
+$txnid = isset($_POST['txn_id']) ? sanitize_input($_POST['txn_id']) : (isset($_GET['txn_id']) ? sanitize_input($_GET['txn_id']) : null);
+$refno = isset($_POST['ref_no']) ? sanitize_input($_POST['ref_no']) : (isset($_GET['ref_no']) ? sanitize_input($_GET['ref_no']) : null);
+$status = isset($_POST['status']) ? sanitize_input($_POST['status']) : (isset($_GET['status']) ? sanitize_input($_GET['status']) : null);
+$amount = isset($_POST['amount']) ? sanitize_input($_POST['amount']) : (isset($_GET['amount']) ? sanitize_input($_GET['amount']) : null);
+$ccy = isset($_POST['ccy']) ? sanitize_input($_POST['ccy']) : (isset($_GET['ccy']) ? sanitize_input($_GET['ccy']) : null);
+$procid = isset($_POST['procid']) ? sanitize_input($_POST['procid']) : (isset($_GET['procid']) ? sanitize_input($_GET['procid']) : null);
 
 // Logging for debugging
 $log_data = "Received parameters:\n";
