@@ -53,7 +53,12 @@ $procid = isset($_POST['procid']) ? sanitize_input($_POST['procid']) : (isset($_
 
 // Logging for debugging
 $log_data = "Received parameters:\n";
-$log_data .= "txn_id: $txnid\nref_no: $refno\nstatus: $status\namount: $amount\nccy: $ccy\nprocid: $procid\n";
+$log_data .= "txn_id: " . ($txnid ?: 'null') . "\n";
+$log_data .= "ref_no: " . ($refno ?: 'null') . "\n";
+$log_data .= "status: " . ($status ?: 'null') . "\n";
+$log_data .= "amount: " . ($amount ?: 'null') . "\n";
+$log_data .= "ccy: " . ($ccy ?: 'null') . "\n";
+$log_data .= "procid: " . ($procid ?: 'null') . "\n";
 log_data($log_data);
 
 // Check if mandatory parameters are available
